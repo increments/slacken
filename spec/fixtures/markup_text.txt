@@ -1,0 +1,70 @@
+*見出し bold*
+
+テキスト _イタリック_  *太字* 
+ stringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstring
+
+hogehogehogehogehogehogehoge <https://cdn.qiita.com/emoji/unicode/1f440.png|:eyes:> hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge <https://cdn.qiita.com/emoji/bowtie.png|:bowtie:>
+
+*中見出し  _italic_*
+
+内容をここに書く
+
+• リスト  
+    • リスト1
+    • リスト2
+
+1. Item 1
+2. Item 2
+3. Item 3  
+    • Item 3a
+    • Item 3b
+
+•     @qiitan, @tomoasleep_seed
+•     List items can have  *bold*  and  _italic text_ 
+•     Checkbox
+•     Checked item
+•     Unchecked item
+
+• 定義語リストとは？
+• こんなかんじで単語の意味を説明していくリストです。
+• 他の単語
+• ここに説明を書く
+
+引用してみるよ
+
+> この文字列は引用されたものです
+>  インデントされているはず
+>  これはもインデントされている
+
+これはインデントされない
+
+こんにちは  `Hello, world!`  你好。
+
+ ```class Klass
+  def method
+    puts 'method called!'
+  end
+end
+``` 
+
++--------------------------------+----------------------+
+|ヘッダー                        |Header                |
++--------------------------------+----------------------+
+|Cell1                           |セル1                 |
+|試しに長い文字列を入力してみるYo|looooooooooooooooooong|
++--------------------------------+----------------------+
+
+<http://cdn.qiita.com/assets/siteid-reverse-1949e989f9d8b2f6fad65a57292b2b01.png|Qiita logo>
+
+<http://qiita.com|http://qiita.com> - リンク
+<http://qiita.com|Qiita>
+
+↓水平線
+
+-----------
+
+↑水平線
+
+ignore it
+
+<https://cdn.qiita.com/emoji/trollface.png|:trollface:><https://cdn.qiita.com/emoji/trollface.png|:trollface:><https://cdn.qiita.com/emoji/trollface.png|:trollface:><https://cdn.qiita.com/emoji/trollface.png|:trollface:><https://cdn.qiita.com/emoji/unicode/1f602.png|:joy:><https://cdn.qiita.com/emoji/unicode/1f602.png|:joy:><https://cdn.qiita.com/emoji/unicode/1f62d.png|:sob:><https://cdn.qiita.com/emoji/unicode/1f62d.png|:sob:>
