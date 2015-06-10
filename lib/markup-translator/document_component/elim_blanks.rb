@@ -14,9 +14,9 @@ class MarkupTranslator::DocumentComponent
       return @is_blank if !@is_blank.nil?
       @is_blank =
         case type.name
-        when :pre, :ul, :li, :br, :hr, :img
+        when :pre, :ul, :li, :br, :hr, :img, :checkbox
           false
-        when :text
+        when :text, :emoji
           content = attrs[:content]
           content.nil? || !content.match(/\A\s*\Z/).nil?
         else

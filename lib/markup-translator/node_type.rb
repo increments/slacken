@@ -13,6 +13,10 @@ module MarkupTranslator
       names.flatten.include?(name)
     end
 
+    def text_types
+      %i(text emoji checkbox)
+    end
+
     def block?
       member_of?(%i(document div iframe p img ul ol dl dd li hr indent
                     p h1 h2 h3 h4 h5 h6 h7 h8 pre blockquote body html))
@@ -22,20 +26,24 @@ module MarkupTranslator
       !block?
     end
 
+    def text_type?
+      member_of?(text_types)
+    end
+
     def allowed_in_list?
-      member_of?(%i(text code b strong i em wrapper div indent span ol ul dl li dd dt))
+      member_of?(%i(code b strong i em wrapper div indent span ol ul dl li dd dt).concat(text_types))
     end
 
     def allowed_as_list_item?
-      member_of?(%i(text code b strong i em wrapper span))
+      member_of?(%i(code b strong i em wrapper span).concat(text_types))
     end
 
     def allowed_in_headline?
-      member_of?(%i(text i em wrapper span))
+      member_of?(%i(i em wrapper span).concat(text_types))
     end
 
     def allowed_in_table?
-      member_of?(%i(text code b strong i em wrapper span))
+      member_of?(%i(code b strong i em wrapper span).concat(text_types))
     end
   end
 end

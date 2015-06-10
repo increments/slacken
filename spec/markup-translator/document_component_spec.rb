@@ -12,6 +12,8 @@ module MarkupTranslator
       it { is_expected.to be_indent_grouped }
       it { is_expected.to be_inlines_grouped }
       it { is_expected.to be_sanitized }
+      it { is_expected.to be_emoji_stringfied }
+      it { is_expected.to be_checkbox_stringfied }
     end
   end
 end

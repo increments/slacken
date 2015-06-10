@@ -6,6 +6,8 @@ require 'markup-translator/document_component/elim_line_breaks'
 require 'markup-translator/document_component/group_inlines'
 require 'markup-translator/document_component/group_indent'
 require 'markup-translator/document_component/sanitize_special_tag_containers'
+require 'markup-translator/document_component/stringfy_checkbox'
+require 'markup-translator/document_component/stringfy_emoji'
 
 # Public: An intermediate object that is used when a HTML source is translated into a MarkupElement
 #         representing structure of a markup text.
@@ -18,6 +20,8 @@ module MarkupTranslator
     include GroupInlines
     include GroupIndent
     include SanitizeSpecialTagContainers
+    include StringfyCheckbox
+    include StringfyEmoji
 
     extend Forwardable
     def_delegators :@type, :block?, :inline?
@@ -41,7 +45,9 @@ module MarkupTranslator
     end
 
     def normalize
-      elim_invalid_links
+      stringfy_emoji
+        .stringfy_checkbox
+        .elim_invalid_links
         .sanitize_special_tag_containers
         .group_inlines
         .group_indent

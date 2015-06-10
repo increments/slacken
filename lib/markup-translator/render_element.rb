@@ -16,6 +16,10 @@ module MarkupTranslator
       case type.name
       when :text
         attrs[:content]
+      when :emoji
+        " #{attrs[:content]} "
+      when :checkbox
+        attrs[:checked] ? '[x] ' : '[ ] '
       when :b, :strong
         " *#{inner.strip}* "
       when :i, :em

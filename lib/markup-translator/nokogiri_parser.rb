@@ -28,8 +28,10 @@ module MarkupTranslator
         { content: node.content }
       when :iframe, :a
         { href: node['href'] }
+      when :input
+        { type: node['type'], checked: node['checked'] }
       when :img
-        { src: node['src'], alt: node['alt'] }
+        { src: node['src'], alt: node['alt'], class: (node['class'] || '').split }
       else
         {}
       end

@@ -3,7 +3,7 @@
 テキスト _イタリック_  *太字* 
  stringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstring
 
-hogehogehogehogehogehogehoge <https://cdn.qiita.com/emoji/unicode/1f440.png|:eyes:> hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge <https://cdn.qiita.com/emoji/bowtie.png|:bowtie:>
+hogehogehogehogehogehogehoge  :eyes:  hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge  :bowtie: 
 
 *中見出し  _italic_*
 
@@ -19,11 +19,11 @@ hogehogehogehogehogehogehoge <https://cdn.qiita.com/emoji/unicode/1f440.png|:eye
     • Item 3a
     • Item 3b
 
-•     @qiitan, @tomoasleep_seed
-•     List items can have  *bold*  and  _italic text_ 
-•     Checkbox
-•     Checked item
-•     Unchecked item
+• [x] @qiitan, @tomoasleep_seed
+• [x] List items can have *bold* and _italic text_
+• [x] Checkbox
+• [x] Checked item
+• [ ] Unchecked item
 
 • 定義語リストとは？
 • こんなかんじで単語の意味を説明していくリストです。
@@ -67,4 +67,4 @@ end
 
 ignore it
 
-<https://cdn.qiita.com/emoji/trollface.png|:trollface:><https://cdn.qiita.com/emoji/trollface.png|:trollface:><https://cdn.qiita.com/emoji/trollface.png|:trollface:><https://cdn.qiita.com/emoji/trollface.png|:trollface:><https://cdn.qiita.com/emoji/unicode/1f602.png|:joy:><https://cdn.qiita.com/emoji/unicode/1f602.png|:joy:><https://cdn.qiita.com/emoji/unicode/1f62d.png|:sob:><https://cdn.qiita.com/emoji/unicode/1f62d.png|:sob:>
+ :trollface:  :trollface:  :trollface:  :trollface:  :joy:  :joy:  :sob:  :sob: 
