@@ -12,28 +12,28 @@ module MarkupTranslator
       children.first
     end
 
-    def to_s
+    def render
       case type.name
       when :text
         attrs[:content]
       when :emoji
-        " #{attrs[:content]} "
+        deco "#{attrs[:content]}"
       when :checkbox
-        attrs[:checked] ? '[x] ' : '[ ] '
+        deco (attrs[:checked] ? '[x] ' : '[ ] ')
       when :b, :strong
-        " *#{inner.strip}* "
+        deco "*#{inner.to_s.strip}*"
       when :i, :em
-        " _#{inner.strip}_ "
+        deco "_#{inner.to_s.strip}_"
       when :iframe, :a
-        SlackUrl.link_tag(inner, attrs[:href])
+        deco SlackUrl.link_tag(inner, attrs[:href])
       when :img
-        SlackUrl.link_tag(attrs[:alt], attrs[:src])
+        deco SlackUrl.link_tag(attrs[:alt], attrs[:src])
       when :pre
-        "```#{inner}```"
+        deco "```#{inner}```"
       when :blockquote
-        insert_head(inner, '> ')
+        insert_head(inner.to_s, '> ')
       when :code
-        " `#{inner}` "
+        deco "`#{inner}`"
       when :br
         "\n"
       when :hr
@@ -44,38 +44,48 @@ module MarkupTranslator
       when :ol, :ul, :dl
         itemize
       when :indent
-        insert_head(inner)
+        insert_head(inner.to_s)
       when /h\d/
-        "*#{inner.strip}*"
+        "*#{inner.to_s.strip}*"
       else
         inner
       end
     end
 
+    def to_s
+      render.to_s
+    end
+
+    private
+
     def itemize
-      children.map.with_index(1) do |child, idx|
+      children_strs = children.map.with_index(1) do |child, idx|
         mark = type.member_of?(:ol) ? "#{idx}. " : '• '
         "#{mark}#{child}"
-      end.join(separator)
+      end
+      grouping(children_strs)
     end
 
     def inner
-      children.map(&:to_s).join(separator)
+      grouping(children.map(&:render))
     end
 
-    def separator
+    def grouping(children_strs)
       if type.inline?
-        ''
+        Rendering::Inlines.new(children_strs)
       elsif type.member_of?(:ul, :ol, :dl, :li, :dd, :dt)
-        "\n"
+        Rendering::Listings.new(children_strs)
       elsif type.block?
-        # Each block node is treated as one paragraph.
-        "\n\n"
+        Rendering::Paragraphs.new(children_strs)
       end
     end
 
     def insert_head(str, head = ' ' * 4)
       str.gsub(/^/, head)
+    end
+
+    def deco(str)
+      Rendering.decorate(str)
     end
   end
 end

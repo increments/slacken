@@ -1,6 +1,7 @@
 module MarkupTranslator
   require 'markup-translator/document_component'
   require 'markup-translator/render_element'
+  require 'markup-translator/rendering'
   require 'markup-translator/nokogiri_parser'
   require 'markup-translator/node_type'
   require 'markup-translator/slack_url'

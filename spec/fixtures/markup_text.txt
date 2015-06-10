@@ -1,11 +1,11 @@
 *見出し bold*
 
-テキスト _イタリック_  *太字* 
+テキスト _イタリック_ *太字*
  stringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstring
 
-hogehogehogehogehogehogehoge  :eyes:  hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge  :bowtie: 
+hogehogehogehogehogehogehoge :eyes: hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge :bowtie:
 
-*中見出し  _italic_*
+*中見出し _italic_*
 
 内容をここに書く
 
@@ -38,14 +38,14 @@ hogehogehogehogehogehogehoge  :eyes:  hogehogehogehogehogehogehogehogehogehogeho
 
 これはインデントされない
 
-こんにちは  `Hello, world!`  你好。
+こんにちは `Hello, world!` 你好。
 
- ```class Klass
+```class Klass
   def method
     puts 'method called!'
   end
 end
-``` 
+```
 
 +--------------------------------+----------------------+
 |ヘッダー                        |Header                |
@@ -67,4 +67,4 @@ end
 
 ignore it
 
- :trollface:  :trollface:  :trollface:  :trollface:  :joy:  :joy:  :sob:  :sob: 
+:trollface::trollface::trollface::trollface::joy::joy::sob::sob:
