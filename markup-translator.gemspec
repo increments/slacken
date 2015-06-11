@@ -5,8 +5,8 @@ require File.expand_path('../lib/markup-translator/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.name          = "markup-translator"
   gem.version       = MarkupTranslator::VERSION
-  gem.summary       = %q{Translate HTML sources to markup texts for notification services}
-  gem.description   = %q{Translate HTML sources to markup texts for notification services}
+  gem.summary       = %q{Translate HTML sources to markup texts for slack}
+  gem.description   = %q{Translate HTML sources to markup texts for slack}
   gem.license       = "MIT"
   gem.authors       = ["Tomoya Chiba"]
   gem.email         = "tomo.asleep@gmail.com"
