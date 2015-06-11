@@ -1,8 +1,8 @@
 module MarkupTranslator
   require 'markup-translator/document_component'
+  require 'markup-translator/dom_container'
   require 'markup-translator/render_element'
   require 'markup-translator/rendering'
-  require 'markup-translator/nokogiri_parser'
   require 'markup-translator/node_type'
   require 'markup-translator/slack_url'
   require 'markup-translator/table_element'
@@ -14,7 +14,7 @@ module MarkupTranslator
     end
 
     def convert(html_source)
-      MarkupTranslator::NokogiriParser.parse_html(html_source)
+      MarkupTranslator::DomContainer.parse_html(html_source)
         .to_component.to_element
     end
   end

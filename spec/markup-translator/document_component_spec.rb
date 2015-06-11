@@ -3,7 +3,7 @@ require 'spec_helper'
 module MarkupTranslator
   describe DocumentComponent do
     describe '#normalize' do
-      subject { NokogiriParser.parse_html(source).to_component.normalize }
+      subject { DomContainer.parse_html(source).to_component.normalize }
       let(:source) { fixture('example.html') }
 
       it { is_expected.to have_no_blanks }

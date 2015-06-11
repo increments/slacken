@@ -1,8 +1,11 @@
 require 'nokogiri'
 
+# Public: a DOM tree container parsed by Nokogiri.
 module MarkupTranslator
-  class NokogiriParser
+  class DomContainer
     attr_reader :root
+
+    # Public: Parse a html source with nokogiri and create a container.
     def self.parse_html(body)
       new(Nokogiri::HTML(body))
     end
@@ -15,6 +18,8 @@ module MarkupTranslator
       children = node.children.map { |nd| to_component(nd) }.compact
       leave(node, children)
     end
+
+    private
 
     def leave(node, children)
       if !(node.respond_to?(:html_dtd?) && node.html_dtd?)
