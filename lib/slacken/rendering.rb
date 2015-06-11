@@ -36,7 +36,9 @@ module Slacken
       #         If the other string begin with a word character,
       #         A space is inserted between the two string.
       def append(other)
-        if other.to_s.empty? || other.to_s.match(/\A[\W&&[:ascii:]]/)
+        if other.to_s.empty?
+          self
+        elsif other.to_s.match(/\A[\W&&[:ascii:]]/)
           other.concat_head(self)
         else
           StringWrapper.new(to_s + " ").append(other)
@@ -47,7 +49,9 @@ module Slacken
       #          If the other string end with a word character,
       #          A space is inserted between the two string.
       def concat_head(other)
-        if other.to_s.empty? || other.to_s.match(/[\W&&[:ascii:]]\Z/)
+        if other.to_s.empty?
+          self
+        elsif other.to_s.match(/[\W&&[:ascii:]]\Z/)
           DecorationWrapper.new(other.to_s + to_s)
         else
           DecorationWrapper.new("#{other} #{to_s}")

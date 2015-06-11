@@ -4,7 +4,7 @@ class Slacken::DocumentComponent
     def elim_line_breaks
       case type.name
       when :text
-        new_content = attrs[:content].gsub(/[\r\n]/, ' ')
+        new_content = attrs[:content].gsub(/[\r\n]/, '')
         derive(children, attrs: attrs.merge(content: new_content))
       when :pre
         self

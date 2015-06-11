@@ -1,7 +1,7 @@
 *見出し bold*
 
 テキスト _イタリック_ *太字*
- stringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstring
+stringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstringstring
 
 hogehogehogehogehogehogehoge :eyes: hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge :bowtie:
 
@@ -9,17 +9,17 @@ hogehogehogehogehogehogehoge :eyes: hogehogehogehogehogehogehogehogehogehogehoge
 
 内容をここに書く
 
-• リスト  
+• リスト
     • リスト1
     • リスト2
 
 1. Item 1
 2. Item 2
-3. Item 3  
+3. Item 3
     • Item 3a
     • Item 3b
 
-• [x] @qiitan, @tomoasleep_seed
+• [x]@qiitan, @tomoasleep_seed
 • [x] List items can have *bold* and _italic text_
 • [x] Checkbox
 • [x] Checked item
@@ -33,11 +33,12 @@ hogehogehogehogehogehogehoge :eyes: hogehogehogehogehogehogehogehogehogehogehoge
 引用してみるよ
 
 > この文字列は引用されたものです
->  インデントされているはず
->  これはもインデントされている
+> インデントされているはず
+> これはもインデントされている
 
 これはインデントされない
 
+まずは *「自己紹介」* してみましょう。
 こんにちは `Hello, world!` 你好。
 
 ```class Klass

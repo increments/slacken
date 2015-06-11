@@ -19,7 +19,7 @@ module Slacken
       when :emoji
         deco "#{attrs[:content]}"
       when :checkbox
-        deco (attrs[:checked] ? '[x] ' : '[ ] ')
+        deco (attrs[:checked] ? '[x]' : '[ ]')
       when :b, :strong
         deco "*#{inner.to_s.strip}*"
       when :i, :em
