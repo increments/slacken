@@ -57,6 +57,8 @@ end
 
 <http://cdn.qiita.com/assets/siteid-reverse-1949e989f9d8b2f6fad65a57292b2b01.png|Qiita logo>
 
+<http://qiita.com|Qiita logo>
+
 <http://qiita.com|http://qiita.com> - リンク
 <http://qiita.com|Qiita>
 

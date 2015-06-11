@@ -27,7 +27,7 @@ module Slacken
       when :iframe, :a
         deco SlackUrl.link_tag(inner, attrs[:href])
       when :img
-        deco SlackUrl.link_tag(attrs[:alt], attrs[:src])
+        deco SlackUrl.link_tag(inner, attrs[:src])
       when :pre
         deco "```#{inner}```"
       when :blockquote

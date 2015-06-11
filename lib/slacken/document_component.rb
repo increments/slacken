@@ -3,8 +3,10 @@ require 'forwardable'
 require 'slacken/document_component/elim_blanks'
 require 'slacken/document_component/elim_invalid_links'
 require 'slacken/document_component/elim_line_breaks'
+require 'slacken/document_component/extract_img_alt'
 require 'slacken/document_component/group_inlines'
 require 'slacken/document_component/group_indent'
+require 'slacken/document_component/sanitize_link_containers'
 require 'slacken/document_component/sanitize_special_tag_containers'
 require 'slacken/document_component/stringfy_checkbox'
 require 'slacken/document_component/stringfy_emoji'
@@ -17,8 +19,10 @@ module Slacken
     include ElimBlanks
     include ElimInvalidLinks
     include ElimLineBreaks
+    include ExtractImgAlt
     include GroupInlines
     include GroupIndent
+    include SanitizeLinkContainers
     include SanitizeSpecialTagContainers
     include StringfyCheckbox
     include StringfyEmoji
@@ -47,7 +51,9 @@ module Slacken
     def normalize
       stringfy_emoji
         .stringfy_checkbox
+        .extract_img_alt
         .elim_invalid_links
+        .sanitize_link_containers
         .sanitize_special_tag_containers
         .group_inlines
         .group_indent
