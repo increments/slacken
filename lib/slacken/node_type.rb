@@ -1,4 +1,4 @@
-module MarkupTranslator
+module Slacken
   class NodeType
     def self.create(name)
       name.is_a?(NodeType) ? name : new(name)

@@ -1,5 +1,5 @@
 require 'rspec'
-require 'markup-translator'
+require 'slacken'
 
 require 'helpers/document_component_dsl'
 

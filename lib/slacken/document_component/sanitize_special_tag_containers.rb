@@ -1,4 +1,4 @@
-class MarkupTranslator::DocumentComponent
+class Slacken::DocumentComponent
   module SanitizeSpecialTagContainers
     # Private: Sanitize not allowed tags in list, headline, and table.
     def sanitize_special_tag_containers

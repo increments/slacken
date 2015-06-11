@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-class MarkupTranslator::DocumentComponent
+class Slacken::DocumentComponent
   describe SanitizeSpecialTagContainers, dsl: true do
     describe '#sanitized?' do
       subject { component.sanitized? }

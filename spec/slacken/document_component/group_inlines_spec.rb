@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-class MarkupTranslator::DocumentComponent
+class Slacken::DocumentComponent
   describe GroupInlines, dsl: true do
     describe '#inlines_grouped?' do
       subject { component.inlines_grouped? }

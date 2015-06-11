@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-class MarkupTranslator::DocumentComponent
+class Slacken::DocumentComponent
   describe GroupIndent, dsl: true do
     describe '#indent_grouped?' do
       subject { component.indent_grouped? }

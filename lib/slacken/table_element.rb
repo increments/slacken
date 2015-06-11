@@ -1,6 +1,6 @@
 require 'kosi'
 
-module MarkupTranslator
+module Slacken
   class TableElement
     attr_reader :header, :columns
     def initialize(children)

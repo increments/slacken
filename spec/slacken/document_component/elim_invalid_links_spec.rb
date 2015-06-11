@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-class MarkupTranslator::DocumentComponent
+class Slacken::DocumentComponent
   describe ElimInvalidLinks, dsl: true do
     describe '#has_no_invalid_links?' do
       subject { component.has_no_invalid_links? }

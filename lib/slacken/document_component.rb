@@ -1,18 +1,18 @@
 require 'forwardable'
 
-require 'markup-translator/document_component/elim_blanks'
-require 'markup-translator/document_component/elim_invalid_links'
-require 'markup-translator/document_component/elim_line_breaks'
-require 'markup-translator/document_component/group_inlines'
-require 'markup-translator/document_component/group_indent'
-require 'markup-translator/document_component/sanitize_special_tag_containers'
-require 'markup-translator/document_component/stringfy_checkbox'
-require 'markup-translator/document_component/stringfy_emoji'
+require 'slacken/document_component/elim_blanks'
+require 'slacken/document_component/elim_invalid_links'
+require 'slacken/document_component/elim_line_breaks'
+require 'slacken/document_component/group_inlines'
+require 'slacken/document_component/group_indent'
+require 'slacken/document_component/sanitize_special_tag_containers'
+require 'slacken/document_component/stringfy_checkbox'
+require 'slacken/document_component/stringfy_emoji'
 
 # Public: An intermediate object that is used when a HTML source is translated into a MarkupElement
 #         representing structure of a markup text.
 #         A DocumentComponent has tree structure and has child nodes as `children`.
-module MarkupTranslator
+module Slacken
   class DocumentComponent
     include ElimBlanks
     include ElimInvalidLinks

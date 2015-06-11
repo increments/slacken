@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe MarkupTranslator do
+describe Slacken do
   describe '#translate' do
     subject { described_class.translate(source) }
     let(:source) { fixture('example.html') }

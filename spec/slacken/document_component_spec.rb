@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-module MarkupTranslator
+module Slacken
   describe DocumentComponent do
     describe '#normalize' do
       subject { DomContainer.parse_html(source).to_component.normalize }

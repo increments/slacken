@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-class MarkupTranslator::DocumentComponent
+class Slacken::DocumentComponent
   describe ElimBlanks, dsl: true do
     describe '#has_no_blanks?' do
       subject { component.has_no_blanks? }

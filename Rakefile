@@ -25,7 +25,7 @@ Gem::Tasks.new
 
 require 'rdoc/task'
 RDoc::Task.new do |rdoc|
-  rdoc.title = "markup-translator"
+  rdoc.title = "slacken"
 end
 task :doc => :rdoc
 

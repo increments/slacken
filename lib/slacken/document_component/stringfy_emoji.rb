@@ -1,4 +1,4 @@
-class MarkupTranslator::DocumentComponent
+class Slacken::DocumentComponent
   module StringfyEmoji
     # Private: Reject blank elements
     def stringfy_emoji

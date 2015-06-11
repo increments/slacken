@@ -1,4 +1,4 @@
-module MarkupTranslator
+module Slacken
   module Rendering
     def self.decorate(str)
       DecorationWrapper.new(str)

@@ -2,10 +2,10 @@
 module DocumentComponentDsl
   def c(type_name, *children)
     options = children.first.is_a?(Hash) ? children.shift : {}
-    MarkupTranslator::DocumentComponent.new(type_name, children, options)
+    Slacken::DocumentComponent.new(type_name, children, options)
   end
 
   def text(content)
-    MarkupTranslator::DocumentComponent.new(:text, [], content: content)
+    Slacken::DocumentComponent.new(:text, [], content: content)
   end
 end

@@ -1,4 +1,4 @@
-class MarkupTranslator::DocumentComponent
+class Slacken::DocumentComponent
   module GroupInlines
     # Private: Group inline elements and wrap them in a wrapper node.
     #          Wrapper nodes are introduced to group inline nodes in a paragraph.

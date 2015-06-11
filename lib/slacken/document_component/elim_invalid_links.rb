@@ -1,4 +1,4 @@
-class MarkupTranslator::DocumentComponent
+class Slacken::DocumentComponent
   module ElimInvalidLinks
     # Private: Eliminate internal links and blank links
     def elim_invalid_links

@@ -1,4 +1,4 @@
-*MarkupTranslator*
+*Slacken*
 
 This gem translates a html source into *a markup text for Slack*.
 <http://qiita.com|Qiita> uses this gem to decorate notification messages to Slack :trollface:.

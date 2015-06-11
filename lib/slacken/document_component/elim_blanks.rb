@@ -1,4 +1,4 @@
-class MarkupTranslator::DocumentComponent
+class Slacken::DocumentComponent
   module ElimBlanks
     # Private: Reject blank elements
     def elim_blanks

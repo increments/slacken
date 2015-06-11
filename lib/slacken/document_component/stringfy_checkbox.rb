@@ -1,4 +1,4 @@
-class MarkupTranslator::DocumentComponent
+class Slacken::DocumentComponent
   module StringfyCheckbox
     # Private: Reject blank elements
     def stringfy_checkbox

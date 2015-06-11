@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-class MarkupTranslator::DocumentComponent
+class Slacken::DocumentComponent
   describe ElimLineBreaks, dsl: true do
     describe '#has_no_line_breaks?' do
       subject { component.has_no_line_breaks? }

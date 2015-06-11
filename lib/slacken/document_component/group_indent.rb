@@ -1,4 +1,4 @@
-class MarkupTranslator::DocumentComponent
+class Slacken::DocumentComponent
   module GroupIndent
     # Private: Wrap contents to indent.
     #          Childrens of li or dd tags are wrapped.

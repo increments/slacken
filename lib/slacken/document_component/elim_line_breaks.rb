@@ -1,4 +1,4 @@
-class MarkupTranslator::DocumentComponent
+class Slacken::DocumentComponent
   module ElimLineBreaks
     # Private: Reject blank elements
     def elim_line_breaks

@@ -1,4 +1,4 @@
-# Markup-translator
+# slacken
 
 ## Description
 This gem translates a html source into a markup text for Slack.
@@ -8,9 +8,9 @@ This gem translates a html source into a markup text for Slack.
 Sample input source and output texts are in `sample/`.
 
 ```
-> require 'markup-translator'
-> puts MarkupTranslator.translate(File.read('sample/source.html'))
-# *MarkupTranslator*
+> require 'slacken'
+> puts Slacken.translate(File.read('sample/source.html'))
+# *Slacken*
 #
 # This gem translates a html source into *a markup text for Slack*.
 # <http://qiita.com|Qiita> uses this gem to decorate notification messages to Slack :trollface:.
@@ -53,7 +53,7 @@ Sample input source and output texts are in `sample/`.
 ## Install
 
 ```
-$ gem install markup-translator
+$ gem install slacken
 ```
 
 ## License

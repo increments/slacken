@@ -1,4 +1,4 @@
-module MarkupTranslator
+module Slacken
   class RenderElement
     attr_reader :type, :renderer, :attrs, :children
 
