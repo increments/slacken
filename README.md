@@ -1,4 +1,4 @@
-# slacken
+# slacken [![Build Status](https://travis-ci.org/increments/slacken.svg)](https://travis-ci.org/increments/slacken)
 
 ## Description
 This gem translates a html source into a markup text for Slack.
