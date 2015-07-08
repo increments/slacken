@@ -3,6 +3,8 @@
 ## Description
 This gem translates a html source into a markup text for Slack.
 
+Official description of Slack message formatting is [here](https://api.slack.com/docs/formatting).
+
 ## Examples
 
 Sample input source and output texts are in `sample/`.
