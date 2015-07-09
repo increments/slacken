@@ -43,7 +43,7 @@ module Slacken
     end
 
     def allowed_in_table?
-      member_of?(%i(code b strong i em wrapper span).concat(text_types))
+      member_of?(%i(code b strong i em wrapper span thead tbody tr th td).concat(text_types))
     end
 
     def allowed_in_link?
