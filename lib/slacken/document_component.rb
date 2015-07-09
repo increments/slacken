@@ -1,41 +1,37 @@
 require 'forwardable'
 
-require 'slacken/document_component/elim_blanks'
-require 'slacken/document_component/elim_invalid_links'
-require 'slacken/document_component/elim_line_breaks'
-require 'slacken/document_component/extract_img_alt'
-require 'slacken/document_component/group_inlines'
-require 'slacken/document_component/group_indent'
-require 'slacken/document_component/sanitize_link_containers'
-require 'slacken/document_component/sanitize_special_tag_containers'
-require 'slacken/document_component/stringfy_checkbox'
-require 'slacken/document_component/stringfy_emoji'
+require 'slacken/filters'
 
 # Public: An intermediate object that is used when a HTML source is translated into a MarkupElement
 #         representing structure of a markup text.
 #         A DocumentComponent has tree structure and has child nodes as `children`.
 module Slacken
   class DocumentComponent
-    include ElimBlanks
-    include ElimInvalidLinks
-    include ElimLineBreaks
-    include ExtractImgAlt
-    include GroupInlines
-    include GroupIndent
-    include SanitizeLinkContainers
-    include SanitizeSpecialTagContainers
-    include StringfyCheckbox
-    include StringfyEmoji
+    NormalizeFilters = [
+      Filters::StringfyEmoji,
+      Filters::StringfyCheckbox,
+      Filters::ExtractImgAlt,
+      Filters::ElimInvalidLinks,
+      Filters::SanitizeHeadline,
+      Filters::SanitizeLink,
+      Filters::SanitizeList,
+      Filters::SanitizeTable,
+      Filters::GroupInlines,
+      Filters::GroupIndent,
+      Filters::ElimBlanks,
+      Filters::ElimLineBreaks,
+    ]
 
     extend Forwardable
     def_delegators :@type, :block?, :inline?
 
-    attr_reader :type, :attrs, :children
+    attr_reader :type, :attrs, :children, :marks
 
     def initialize(type, children = [], attrs = {})
       @type = NodeType.create(type)
       @attrs = attrs
       @children = children
+      @marks = {}
     end
 
     def derive(new_children, updates = {})
@@ -49,16 +45,9 @@ module Slacken
     end
 
     def normalize
-      stringfy_emoji
-        .stringfy_checkbox
-        .extract_img_alt
-        .elim_invalid_links
-        .sanitize_link_containers
-        .sanitize_special_tag_containers
-        .group_inlines
-        .group_indent
-        .elim_blanks
-        .elim_line_breaks
+      NormalizeFilters.reduce(self) do |component, filter_klass|
+        filter_klass.new.call(component)
+      end
     end
 
     # Private: Convert this element to a MarkupElement.
