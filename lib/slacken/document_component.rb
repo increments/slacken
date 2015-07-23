@@ -1,11 +1,10 @@
 require 'forwardable'
-
 require 'slacken/filters'
 
-# Public: An intermediate object that is used when a HTML source is translated into a MarkupElement
-#         representing structure of a markup text.
-#         A DocumentComponent has tree structure and has child nodes as `children`.
 module Slacken
+  # Public: An intermediate object that is used when a HTML source is translated into a MarkupElement
+  #         representing structure of a markup text.
+  #         A DocumentComponent has tree structure and has child nodes as `children`.
   class DocumentComponent
     NormalizeFilters = [
       Filters::StringfyEmoji,
@@ -50,7 +49,6 @@ module Slacken
       end
     end
 
-    # Private: Convert this element to a MarkupElement.
     def produce_element
       if type.member_of?(:table)
         TableElement.new(children.map(&:produce_element))

@@ -60,7 +60,6 @@ module Slacken
     end
 
     # Public: an intermediate object to stringfy RenderElements.
-    #
     class RenderingGroup
       attr_reader :children
       def initialize(children)

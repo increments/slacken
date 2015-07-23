@@ -1,4 +1,5 @@
 module Slacken
+  # Public: Representing type of DocumentComponent.
   class NodeType
     def self.create(name)
       name.is_a?(NodeType) ? name : new(name)

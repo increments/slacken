@@ -1,4 +1,6 @@
 module Slacken
+  # Internal: Representing a tree structure of a document and
+  #           responsible for rendering the structure to string.
   class RenderElement
     attr_reader :type, :renderer, :attrs, :children
 

@@ -1,7 +1,7 @@
 require 'nokogiri'
 
-# Public: a DOM tree container parsed by Nokogiri.
 module Slacken
+  # Public: a DOM tree container parsed by Nokogiri.
   class DomContainer
     attr_reader :root
 
