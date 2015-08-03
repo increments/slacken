@@ -1,8 +1,11 @@
 require 'nokogiri'
 
-module MarkupTranslator
-  class NokogiriParser
+module Slacken
+  # Public: a DOM tree container parsed by Nokogiri.
+  class DomContainer
     attr_reader :root
+
+    # Public: Parse a html source with nokogiri and create a container.
     def self.parse_html(body)
       new(Nokogiri::HTML(body))
     end
@@ -16,6 +19,8 @@ module MarkupTranslator
       leave(node, children)
     end
 
+    private
+
     def leave(node, children)
       if !(node.respond_to?(:html_dtd?) && node.html_dtd?)
         DocumentComponent.new(node.name.downcase, children, attrs_of(node))
@@ -28,8 +33,10 @@ module MarkupTranslator
         { content: node.content }
       when :iframe, :a
         { href: node['href'] }
+      when :input
+        { type: node['type'], checked: node['checked'] }
       when :img
-        { src: node['src'], alt: node['alt'] }
+        { src: node['src'], alt: node['alt'], class: (node['class'] || '').split }
       else
         {}
       end
