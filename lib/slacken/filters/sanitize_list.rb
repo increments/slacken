@@ -23,10 +23,10 @@ module Slacken::Filters
 
     def sanitize_list(component)
       if component.type.member_of?(:li, :dd)
-          head, *tails = component.children
-          component.derive(
-            [sanitize_list_item(head), *tails.map(&method(:sanitize_list))]
-          )
+        head, *tails = component.children
+        component.derive(
+          [sanitize_list_item(head), *tails.map(&method(:sanitize_list))]
+        )
       elsif component.type.allowed_in_list?
         component.derive(component.children.map(&method(:sanitize_list)))
       else
