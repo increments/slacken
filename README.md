@@ -7,7 +7,7 @@ Official description of Slack message formatting is [here](https://api.slack.com
 
 ## Examples
 
-Sample input source and output texts are in `examples/`.
+The following code translates [a html source](https://github.com/increments/slacken/blob/master/examples/source.html) to [a markup text](https://github.com/increments/slacken/blob/master/examples/out.txt) for Slack
 
 ```
 > require 'slacken'
@@ -15,7 +15,7 @@ Sample input source and output texts are in `examples/`.
 # *Slacken*
 #
 # This gem translates a html source into *a markup text for Slack*.
-# <http://qiita.com|Qiita> uses this gem to decorate notification messages to Slack :trollface:.
+# <https://teams.qiita.com|Qiita:Team> uses this gem to decorate notification messages to Slack :trollface:.
 #
 # *Examples*
 #
@@ -32,7 +32,7 @@ Sample input source and output texts are in `examples/`.
 # *Citation*
 #
 # > Qiita is a technical information sharing site for programmers.
-# >  Kobito is an application for technical information recording.
+# > Kobito is an application for technical information recording.
 #
 # *Source Code*
 #
@@ -43,11 +43,11 @@ Sample input source and output texts are in `examples/`.
 # end
 # ```
 #
+# -----------
+#
 # *Image*
 #
 # This is a Qiita logo.
-#
-# -----------
 #
 # <http://cdn.qiita.com/assets/siteid-reverse-1949e989f9d8b2f6fad65a57292b2b01.png|Qiita logo>
 ```
