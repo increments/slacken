@@ -32,7 +32,7 @@ module Slacken::Filters
       else
         component.derive(
           component.children.map(&method(:sanitize_list)),
-          type: block? ? :div : :span
+          type: component.block? ? :div : :span
         )
       end
     end

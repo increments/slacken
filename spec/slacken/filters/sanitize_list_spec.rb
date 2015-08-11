@@ -33,4 +33,18 @@ describe Slacken::Filters::SanitizeList, dsl: true do
       it { is_expected.to be_truthy }
     end
   end
+
+  describe '#call' do
+    let(:filter) { described_class.new.call(component) }
+
+    context 'when a list has a img tag' do
+      let(:component) do
+        c(:ul, c(:img))
+      end
+
+      it 'changes img to div tag' do
+        expect(filter.children.first.type.name).to eq :div
+      end
+    end
+  end
 end
