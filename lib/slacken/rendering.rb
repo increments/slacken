@@ -1,10 +1,23 @@
 module Slacken
+  # Internal: Contain classes calculating proper spacing to serialize RenderElement.
+  #
+  # TODO: The class and module names are vague.
+  #       Give better names to these class and module.
   module Rendering
     def self.decorate(str)
       DecorationWrapper.new(str)
     end
 
-    # Private: A wrapper of string to concat node strings of a document tree.
+    # These StringWrapper and DecorationWrapper is to calculate spacing of
+    # each RenderElement's string representation.
+    #
+    # Most formatting expression in Slack messages should have distances from neighbor strings.
+    # For example, Slack does not make the following text `*should-be-bold*` bold.
+    #
+    #   previous-string-*should-be-bold*-next-string
+    #
+
+    # Internal: A string which may adjoin previous and next strings.
     class StringWrapper
       def self.wrap(str)
         str.kind_of?(StringWrapper) ? str : new(str)
@@ -18,18 +31,18 @@ module Slacken
         @str.to_s
       end
 
-      # Public: Append another string to self.
+      # Internal: Append another string to self.
       def append(other)
         other.concat_head(self)
       end
 
-      # Private: prepend another string to self.
+      # Internal: prepend another string to self.
       def concat_head(other)
         StringWrapper.new(other.to_s + to_s)
       end
     end
 
-    # Private: A wrapper to space before and after the given string.
+    # Internal: A string which should put distances from previous and next strings.
     class DecorationWrapper < StringWrapper
 
       # Public: Append another string to self.
@@ -59,7 +72,25 @@ module Slacken
       end
     end
 
-    # Public: an intermediate object to stringfy RenderElements.
+    # These classes represents gruop of strings and they concat their strings with
+    # their own separator.
+    # They also works with StringWrapper and DecorationWrapper to avoid
+    # bad or unnecessary spacing.
+    #
+    # For example, Slack does not make the following text `* should-be-bold *` bold
+    # because there are spaces after the first asterisk and before the last asterisk.
+    #
+    #   * should-be-bold *
+    #
+    # Besides, for such the formatting expressions, it is unnecessary to put space on
+    # the beginning of each new line. Unnecessary spacing does not look good.
+    #
+    #   This is the first line.
+    #    *This* is the second line.
+    #   This is the third line.
+    #
+
+    # Internal: an intermediate object to stringfy RenderElements.
     class RenderingGroup
       attr_reader :children
       def initialize(children)
@@ -70,6 +101,7 @@ module Slacken
         fail NotImplementedError
       end
 
+      # Internal: Return Array of Strings, where there are separators between each string.
       def to_a
         extracted_children = children.map { |c| c.respond_to?(:to_a) ? c.to_a : c }
         extracted_children.zip(Array.new(children.length, separator)).flatten[0..-2]
