@@ -13,6 +13,8 @@ module Slacken
       convert(html_source).to_s
     end
 
+    private
+
     def convert(html_source)
       Slacken::DomContainer.parse_html(html_source)
         .to_component.to_element
