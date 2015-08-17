@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Translate HTML sources to markup texts for slack}
   gem.description   = %q{Translate HTML sources to markup texts for slack}
   gem.license       = "MIT"
-  gem.authors       = ["Tomoya Chiba"]
-  gem.email         = "tomo.asleep@gmail.com"
+  gem.authors       = ["Tomoya Chiba", "Yuku Takahashi"]
+  gem.email         = ["tomo.asleep@qiita.com", "yuku@qiita.com"]
   gem.homepage      = "https://rubygems.org/gems/slacken"
 
   gem.files         = `git ls-files`.split($/)
