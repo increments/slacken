@@ -8,5 +8,5 @@ def fixture(name)
 end
 
 RSpec.configure do |c|
-  c.include DocumentComponentDsl, dsl: true
+  c.include Slacken::Helpers::DocumentComponentDsl, dsl: true
 end
