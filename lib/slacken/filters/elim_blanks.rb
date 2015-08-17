@@ -28,7 +28,7 @@ module Slacken::Filters
 
       component.marks[:blank] =
         case component.type.name
-        when :pre, :ul, :li, :br, :hr, :img, :checkbox
+        when :pre, :ul, :li, :br, :hr, :img, :checkbox, :td
           false
         when :text, :emoji
           content = component.attrs[:content]

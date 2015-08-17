@@ -233,6 +233,42 @@ describe Slacken do
       end
     end
 
+    context 'when table with empty td is given' do
+      let(:source) do
+        <<-EOS.unindent
+          <table>
+          <thead>
+          <tr>
+          <th>Header1</th>
+          <th>Header2</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td>A</td>
+          <td></td>
+          </tr>
+          <tr>
+          <td>B</td>
+          <td>C</td>
+          </tr>
+          </tbody>
+          </table>
+        EOS
+      end
+
+      it 'converts html to table notation' do
+        should eq <<-EOS.unindent.chomp
+          +-------+-------+
+          |Header1|Header2|
+          +-------+-------+
+          |A      |       |
+          |B      |C      |
+          +-------+-------+
+        EOS
+      end
+    end
+
     context 'when img is given' do
       let(:source) { "<p><img src='#{src}' alt='#{alt}'></p>" }
       let(:src) { 'http://cdn.qiita.com/logo.png' }
