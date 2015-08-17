@@ -3,28 +3,41 @@ require 'nokogiri'
 module Slacken
   # Public: a DOM tree container parsed by Nokogiri.
   class DomContainer
-    attr_reader :root
-
-    # Public: Parse a html source with nokogiri and create a container.
-    def self.parse_html(body)
-      new(Nokogiri::HTML(body))
-    end
-
     def initialize(root)
       @root = root
     end
 
-    def to_component(node = root)
-      children = node.children.map { |nd| to_component(nd) }.compact
-      leave(node, children)
+    # Public: Create a DocumentComponent of the root node.
+    #
+    # Returns a DocumentComponent or nil.
+    def to_component
+      build_document_component(@root)
     end
 
     private
 
-    def leave(node, children)
-      if !(node.respond_to?(:html_dtd?) && node.html_dtd?)
-        DocumentComponent.new(node.name.downcase, children, attrs_of(node))
-      end
+    # Internal: Build a DocumentComponent of the given node recursively.
+    #
+    # current_node - A Nokogiri::HTML::Document.
+    #
+    # Returns a DocumentComponent.
+    def build_document_component(node)
+      DocumentComponent.new(
+        node.name.downcase,
+        build_document_components_array(node.children),
+        attrs_of(node)
+      )
+    end
+
+    # Internal: Build sequence of DocumentComponent objects for each given nodes.
+    #
+    # nodes - A Nokogiri::XML::NodeSet.
+    #
+    # Returns an Array of DocumentComponents.
+    def build_document_components_array(node_set)
+      node_set
+        .reject { |node| node.respond_to?(:html_dtd?) && node.html_dtd? }
+        .map { |node| build_document_component(node) }
     end
 
     def attrs_of(node)
