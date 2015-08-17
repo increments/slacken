@@ -2,7 +2,6 @@ require 'kosi'
 
 module Slacken
   class TableElement
-    attr_reader :header, :columns
     def initialize(children)
       if children.first.type.name == :thead
         thead, tbody = children.slice(0, 2)
@@ -25,11 +24,11 @@ module Slacken
     private
 
     def table_head
-      header ? { header: header.children.map(&:to_s) } : {}
+      @header ? { header: @header.children.map(&:to_s) } : {}
     end
 
     def table_body
-      columns.map { |cl| cl.children.map(&:to_s) }
+      @columns.map { |column| column.children.map(&:to_s) }
     end
   end
 end
