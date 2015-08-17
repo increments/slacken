@@ -9,15 +9,26 @@ module Slacken
   require 'slacken/version'
 
   class << self
+    # Public: Translate HTML string into Markdown string.
+    #
+    # html_source - A String or IO.
+    #
+    # Returns a markdown String.
     def translate(html_source)
-      convert(html_source).to_s
+      if (component = convert_html_to_document_component(html_source))
+        component.to_element.to_s
+      else
+        ''
+      end
     end
 
     private
 
-    def convert(html_source)
-      Slacken::DomContainer.parse_html(html_source)
-        .to_component.to_element
+    # Internal: Parse a HTML string and convert it to a DocumentComponent object.
+    #
+    # Returns a DocumentComponent or nil.
+    def convert_html_to_document_component(html_source)
+      DocumentComponent.build_by_html(html_source)
     end
   end
 end

@@ -26,6 +26,15 @@ module Slacken
 
     attr_reader :type, :attrs, :children, :marks
 
+    # Public: Parse a html source with nokogiri and create a component.
+    #
+    # html_source - A String or IO.
+    #
+    # Returns a DocumentComponent or nil.
+    def self.build_by_html(html_source)
+      DomContainer.new(Nokogiri::HTML(html_source)).to_component
+    end
+
     def initialize(type, children = [], attrs = {})
       @type = NodeType.create(type)
       @attrs = attrs

@@ -5,11 +5,6 @@ module Slacken
   class DomContainer
     attr_reader :root
 
-    # Public: Parse a html source with nokogiri and create a container.
-    def self.parse_html(body)
-      new(Nokogiri::HTML(body))
-    end
-
     def initialize(root)
       @root = root
     end
