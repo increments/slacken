@@ -4,20 +4,32 @@ module Slacken
   class TableElement
     attr_reader :header, :columns
     def initialize(children)
-      thead, tbody = children.slice(0, 2)
-      @header = thead.child # tr tag
-      @columns = tbody.children # tr tags
+      if children.first.type.name == :thead
+        thead, tbody = children.slice(0, 2)
+        @header = thead.child # tr tag
+        @columns = tbody.children # tr tags
+      else
+        @header = nil
+        @columns = children
+      end
     end
 
     def render
-      head = header.children.map(&:to_s)
-      body = columns.map { |cl| cl.children.map(&:to_s) }
-      table = Kosi::Table.new(header: head).render(body)
-      table.to_s.chomp
+      Kosi::Table.new(table_head).render(table_body).to_s.chomp
     end
 
     def to_s
       render
+    end
+
+    private
+
+    def table_head
+      header ? { header: header.children.map(&:to_s) } : {}
+    end
+
+    def table_body
+      columns.map { |cl| cl.children.map(&:to_s) }
     end
   end
 end
