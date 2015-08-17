@@ -44,7 +44,10 @@ module Slacken
 
     def derive(new_children, updates = {})
       self.class.new(
-        updates[:type] || type, new_children, updates[:attrs] || attrs)
+        updates[:type] || type,
+        new_children,
+        updates[:attrs] || attrs
+      )
     end
 
     # Public: Normalize this object's structure and convert it to MarkupElement.
