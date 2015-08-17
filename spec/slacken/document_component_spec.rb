@@ -6,7 +6,7 @@ module Slacken
       subject { DomContainer.parse_html(source).to_component.normalize }
       let(:source) { fixture('example.html') }
 
-      DocumentComponent::NormalizeFilters.each do |klass|
+      DocumentComponent::NORMALIZE_FILTERS.each do |klass|
         context "when #{klass.name} checks the result's validity" do
           let(:filter) { klass.new }
           it { is_expected.to satisfy(&filter.method(:valid?)) }

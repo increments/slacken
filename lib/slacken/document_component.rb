@@ -6,7 +6,7 @@ module Slacken
   #         representing structure of a markup text.
   #         A DocumentComponent has tree structure and has child nodes as `children`.
   class DocumentComponent
-    NormalizeFilters = [
+    NORMALIZE_FILTERS = [
       Filters::StringfyEmoji,
       Filters::StringfyCheckbox,
       Filters::ExtractImgAlt,
@@ -44,7 +44,7 @@ module Slacken
     end
 
     def normalize
-      NormalizeFilters.reduce(self) do |component, filter_klass|
+      NORMALIZE_FILTERS.reduce(self) do |component, filter_klass|
         filter_klass.new.call(component)
       end
     end
