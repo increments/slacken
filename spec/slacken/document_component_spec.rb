@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Slacken::DocumentComponent do
   let(:document_component) { described_class.build_by_html(source) }
+  # If you change the behavior, you should run `scripts/update_markup_fixture.rb`
+  # to update fixture file.
   let(:source) { fixture('example.html') }
 
   describe '#normalize' do

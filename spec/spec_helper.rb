@@ -1,5 +1,6 @@
 require 'rspec'
 require 'slacken'
+require 'unindent'
 
 require 'helpers/document_component_dsl'
 
