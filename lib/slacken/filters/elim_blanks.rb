@@ -32,7 +32,7 @@ module Slacken::Filters
           false
         when :text, :emoji
           content = component.attrs[:content]
-          content.nil? || !content.match(/\A\s*\Z/).nil?
+          content.nil? || !content.match(/\A\n*\Z/).nil?
         else
           component.children.empty? || component.children.all?(&method(:blank?))
         end

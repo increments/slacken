@@ -319,11 +319,11 @@ describe Slacken do
       end
     end
 
-    context 'when a is given' do
-      let(:source) { '<p><a href="http://qiita.com">qiita</a></p>' }
+    context 'when space-separated links are given' do
+      let(:source) { '<p><a href="/alice">@alice</a> <a href="/bob">@bob</a></p>' }
 
-      it 'converts to link notation' do
-        should eq "<http://qiita.com|qiita>"
+      it 'preserves the space' do
+        should eq "@alice @bob"
       end
     end
 
