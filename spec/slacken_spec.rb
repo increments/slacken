@@ -293,6 +293,30 @@ describe Slacken do
       end
     end
 
+    context 'when table with thead but without tbody is given' do
+      let(:source) do
+        <<-EOS.unindent
+          <table>
+          <thead>
+          <tr>
+          <th>Header1</th>
+          <th>Header2</th>
+          </tr>
+          </thead>
+          </table>
+        EOS
+      end
+
+      it 'converts html to table notation' do
+        should eq <<-EOS.unindent.chomp
+          +-------+-------+
+          |Header1|Header2|
+          +-------+-------+
+          +-------+-------+
+        EOS
+      end
+    end
+
     context 'when empty table is given' do
       let(:source) { '<table></table>' }
 
