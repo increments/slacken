@@ -32,15 +32,15 @@ module Slacken
     end
 
     def allowed_in_list?
-      member_of?(%i(emoji code b strong i em wrapper div indent span ol ul dl li dd dt).concat(text_types))
+      member_of?(%i(a emoji code b strong i em wrapper div indent span ol ul dl li dd dt).concat(text_types))
     end
 
     def allowed_as_list_item?
-      member_of?(%i(emoji code b strong i em wrapper span).concat(text_types))
+      member_of?(%i(a emoji code b strong i em wrapper span).concat(text_types))
     end
 
     def allowed_in_headline?
-      member_of?(%i(emoji i em wrapper span).concat(text_types))
+      member_of?(%i(a emoji i em wrapper span).concat(text_types))
     end
 
     def allowed_in_table?

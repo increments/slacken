@@ -19,17 +19,17 @@ describe Slacken do
         should eq '*heading _italic_ bold*'
       end
 
-      context 'when the h1 tag contains an emoji' do
+      context 'when the h1 tag contains an link and an emoji' do
         let(:source) do
           <<-EOS.unindent
             <h1>
-              heading<img class="emoji" title=":eyes:" alt=":eyes:" src="https://cdn.qiita.com/emoji/unicode/1f440.png" height="20" width="20" align="absmiddle">
+              <a href="http://qiita.com">Qiita</a>heading<img class="emoji" title=":eyes:" alt=":eyes:" src="https://cdn.qiita.com/emoji/unicode/1f440.png" height="20" width="20" align="absmiddle">
             </h1>
           EOS
         end
 
         it 'wraps inner text with "*"' do
-          should eq '*heading :eyes:*'
+          should eq '*<http://qiita.com|Qiita> heading :eyes:*'
         end
       end
     end
@@ -91,11 +91,11 @@ describe Slacken do
       end
     end
 
-    context 'when li elements which contain emojis are given' do
+    context 'when li elements which contain link tags and emojis are given' do
       let(:source) do
         <<-EOS.unindent
           <ul>
-          <li>リスト1</li>
+          <li><a href="https://example.com">リスト1</a></li>
           <li>リスト2<img class="emoji" title=":bowtie:" alt=":bowtie:" src="https://cdn.qiita.com/emoji/bowtie.png" height="20" width="20" align="absmiddle"></li>
           <li>リスト3
           <ul>
@@ -108,7 +108,7 @@ describe Slacken do
 
       it 'converts to list notation' do
         should eq <<-EOS.unindent.chomp
-        • リスト1
+        • <https://example.com|リスト1>
         • リスト2 :bowtie:
         • リスト3
             • リスト3-1 :eyes:
