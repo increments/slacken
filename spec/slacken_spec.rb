@@ -61,19 +61,38 @@ describe Slacken do
     end
 
     context 'when emoji img is given' do
-      let(:source) do
-        <<-EOS.unindent
-          <p>
-          hello
-          <img  class="emoji" title=":eyes:" alt=":eyes:" src="https://cdn.qiita.com/emoji/unicode/1f440.png" height="20" width="20" align="absmiddle">
-          world
-          <img class="emoji" title=":bowtie:" alt=":bowtie:" src="https://cdn.qiita.com/emoji/bowtie.png" height="20" width="20" align="absmiddle">
-          </p>
-        EOS
+      context 'and its alt is written with emoji notation' do
+        let(:source) do
+          <<-EOS.unindent
+            <p>
+            hello
+            <img  class="emoji" title=":eyes:" alt=":eyes:" src="https://cdn.qiita.com/emoji/unicode/1f440.png" height="20" width="20" align="absmiddle">
+            world
+            <img class="emoji" title=":bowtie:" alt=":bowtie:" src="https://cdn.qiita.com/emoji/bowtie.png" height="20" width="20" align="absmiddle">
+            </p>
+          EOS
+        end
+
+        it 'replaces img elements with corresponding emoji notation' do
+          should eq 'hello :eyes: world :bowtie:'
+        end
       end
 
-      it 'replaces img elements with corresponding emoji notation' do
-        should eq 'hello :eyes: world :bowtie:'
+      context 'and its alt is emoji code' do
+        let(:source) do
+          <<-EOS.unindent
+            <p>
+            hello
+            <img  class="emoji" title="eyes" alt="eyes" src="https://cdn.qiita.com/emoji/unicode/1f440.png" height="20" width="20" align="absmiddle">
+            world
+            <img class="emoji" title="bowtie" alt="bowtie" src="https://cdn.qiita.com/emoji/bowtie.png" height="20" width="20" align="absmiddle">
+            </p>
+          EOS
+        end
+
+        it 'replaces img elements with corresponding emoji notation' do
+          should eq 'hello :eyes: world :bowtie:'
+        end
       end
     end
 
