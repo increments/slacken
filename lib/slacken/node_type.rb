@@ -50,5 +50,9 @@ module Slacken
     def allowed_in_link?
       member_of?(%i(b strong i em wrapper span).concat(text_types))
     end
+
+    def ==(another)
+      name == another.name
+    end
   end
 end

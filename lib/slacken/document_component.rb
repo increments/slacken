@@ -68,5 +68,11 @@ module Slacken
         RenderElement.new(type, children.map(&:produce_element), attrs)
       end
     end
+
+    def ==(another)
+      type == another.type &&
+      attrs_comp = attrs.sort == another.attrs.sort &&
+      children == another.children
+    end
   end
 end
