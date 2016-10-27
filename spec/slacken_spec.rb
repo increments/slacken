@@ -18,6 +18,20 @@ describe Slacken do
       it 'wraps inner text with "*"' do
         should eq '*heading _italic_ bold*'
       end
+
+      context 'when the h1 tag contains an emoji' do
+        let(:source) do
+          <<-EOS.unindent
+            <h1>
+              heading<img class="emoji" title=":eyes:" alt=":eyes:" src="https://cdn.qiita.com/emoji/unicode/1f440.png" height="20" width="20" align="absmiddle">
+            </h1>
+          EOS
+        end
+
+        it 'wraps inner text with "*"' do
+          should eq '*heading :eyes:*'
+        end
+      end
     end
 
     context 'when p is given' do
@@ -61,19 +75,63 @@ describe Slacken do
     end
 
     context 'when emoji img is given' do
+      context 'and its alt is written with emoji notation' do
+        let(:source) do
+          <<-EOS.unindent
+            <p>
+            hello
+            <img  class="emoji" title=":eyes:" alt=":eyes:" src="https://cdn.qiita.com/emoji/unicode/1f440.png" height="20" width="20" align="absmiddle">
+            world
+            <img class="emoji" title=":bowtie:" alt=":bowtie:" src="https://cdn.qiita.com/emoji/bowtie.png" height="20" width="20" align="absmiddle">
+            </p>
+          EOS
+        end
+
+        it 'replaces img elements with corresponding emoji notation' do
+          should eq 'hello :eyes: world :bowtie:'
+        end
+      end
+
+      context 'and its alt is emoji code' do
+        let(:source) do
+          <<-EOS.unindent
+            <p>
+            hello
+            <img  class="emoji" title="eyes" alt="eyes" src="https://cdn.qiita.com/emoji/unicode/1f440.png" height="20" width="20" align="absmiddle">
+            world
+            <img class="emoji" title="bowtie" alt="bowtie" src="https://cdn.qiita.com/emoji/bowtie.png" height="20" width="20" align="absmiddle">
+            </p>
+          EOS
+        end
+
+        it 'replaces img elements with corresponding emoji notation' do
+          should eq 'hello :eyes: world :bowtie:'
+        end
+      end
+    end
+
+    context 'when li elements which contain emojis are given' do
       let(:source) do
         <<-EOS.unindent
-          <p>
-          hello
-          <img  class="emoji" title=":eyes:" alt=":eyes:" src="https://cdn.qiita.com/emoji/unicode/1f440.png" height="20" width="20" align="absmiddle">
-          world
-          <img class="emoji" title=":bowtie:" alt=":bowtie:" src="https://cdn.qiita.com/emoji/bowtie.png" height="20" width="20" align="absmiddle">
-          </p>
+          <ul>
+          <li>リスト1</li>
+          <li>リスト2<img class="emoji" title=":bowtie:" alt=":bowtie:" src="https://cdn.qiita.com/emoji/bowtie.png" height="20" width="20" align="absmiddle"></li>
+          <li>リスト3
+          <ul>
+          <li>リスト3-1<img class="emoji" title=":eyes:" alt=":eyes:" src="https://cdn.qiita.com/emoji/unicode/1f440.png" height="20" width="20" align="absmiddle"></li>
+          </ul>
+          </li>
+          </ul>
         EOS
       end
 
-      it 'replaces img elements with corresponding emoji notation' do
-        should eq 'hello :eyes: world :bowtie:'
+      it 'converts to list notation' do
+        should eq <<-EOS.unindent.chomp
+        • リスト1
+        • リスト2 :bowtie:
+        • リスト3
+            • リスト3-1 :eyes:
+        EOS
       end
     end
 
@@ -233,6 +291,42 @@ describe Slacken do
       end
     end
 
+    context 'when table which contains emoji is given' do
+      let(:source) do
+        <<-EOS.unindent
+          <table>
+          <thead>
+          <tr>
+          <th>Header1<img class="emoji" title=":eyes:" alt=":eyes:" src="https://cdn.qiita.com/emoji/unicode/1f440.png" height="20" width="20" align="absmiddle"></th>
+          <th>Header2</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td>Cell1</td>
+          <td>Cell2</td>
+          </tr>
+          <tr>
+          <td>hello</td>
+          <td>world</td>
+          </tr>
+          </tbody>
+          </table>
+        EOS
+      end
+
+      it 'converts html to table notation' do
+        should eq <<-EOS.unindent.chomp
+          +--------------+-------+
+          |Header1 :eyes:|Header2|
+          +--------------+-------+
+          |Cell1         |Cell2  |
+          |hello         |world  |
+          +--------------+-------+
+        EOS
+      end
+    end
+
     context 'when table with empty td is given' do
       let(:source) do
         <<-EOS.unindent
@@ -340,6 +434,15 @@ describe Slacken do
 
       it 'ignores the link' do
         should eq "<#{src}|#{alt}>"
+      end
+    end
+
+    context 'when emoji in a is given' do
+      let(:source) { "<p><a href='#{src}'><img class='emoji' title=':bowtie:' alt=':bowtie:' src='https://cdn.qiita.com/emoji/bowtie.png' height='20' width='20' align='absmiddle'></a></p>" }
+      let(:src) { 'http://cdn.qiita.com/logo.png' }
+
+      it 'converts emoji in the link' do
+        should eq "<#{src}|:bowtie:>"
       end
     end
 

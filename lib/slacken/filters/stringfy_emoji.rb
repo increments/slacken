@@ -3,7 +3,9 @@ module Slacken::Filters
   class StringfyEmoji < Slacken::Filter
     def call(component)
       if emoji_img_tag?(component)
-        component.class.new(:emoji, [], content: component.attrs[:alt])
+        emoji_code = component.attrs[:alt]
+        emoji_code = $~[:emoji_code] if emoji_code.match(/^:(?<emoji_code>.+):$/)
+        component.class.new(:emoji, [], content: emoji_code)
       else
         component.derive(component.children.map(&method(:call)))
       end
