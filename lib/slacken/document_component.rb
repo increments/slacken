@@ -9,6 +9,7 @@ module Slacken
     NORMALIZE_FILTERS = [
       Filters::StringfyEmoji,
       Filters::StringfyCheckbox,
+      Filters::ReplaceUnsupportedImgs,
       Filters::ExtractImgAlt,
       Filters::ElimInvalidLinks,
       Filters::SanitizeHeadline,
@@ -67,6 +68,14 @@ module Slacken
       else
         RenderElement.new(type, children.map(&:produce_element), attrs)
       end
+    end
+
+    def ==(other)
+      other.instance_of?(self.class) &&
+        type.name == other.type.name &&
+        attrs == other.attrs &&
+        marks == other.marks &&
+        children == other.children
     end
   end
 end
