@@ -18,7 +18,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
 
   gem.add_development_dependency 'bundler'
-  gem.add_development_dependency 'rake', '~> 10.0'
+  gem.add_development_dependency 'rake', '~> 13.2'
   gem.add_development_dependency 'rdoc', '~> 6.14'
   gem.add_development_dependency 'rspec', '~> 3.0'
   gem.add_development_dependency 'rubygems-tasks', '~> 0.2'
